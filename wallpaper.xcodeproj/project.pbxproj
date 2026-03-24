@@ -19,6 +19,7 @@
 		21BDC0E12F722DAD00B05C68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BDC0CC2F722DAD00B05C68 /* ContentView.swift */; };
 		21BDC0E22F722DAD00B05C68 /* UnsplashImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BDC0D32F722DAD00B05C68 /* UnsplashImage.swift */; };
 		21BDC0E32F722DAD00B05C68 /* UnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BDC0D42F722DAD00B05C68 /* UnsplashService.swift */; };
+		21BDC0E62F72331300B05C68 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BDC0E42F72331300B05C68 /* LoginItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		21BDC0D52F722DAD00B05C68 /* UnsplashWallpaperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashWallpaperApp.swift; sourceTree = "<group>"; };
 		21BDC0D62F722DAD00B05C68 /* WallpaperManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperManager.swift; sourceTree = "<group>"; };
 		21BDC0D72F722DAD00B05C68 /* WallpaperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewModel.swift; sourceTree = "<group>"; };
+		21BDC0E42F72331300B05C68 /* LoginItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemManager.swift; sourceTree = "<group>"; };
+		21BDC0E52F72331300B05C68 /* UnsplashWallpaper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UnsplashWallpaper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				21BDC0D52F722DAD00B05C68 /* UnsplashWallpaperApp.swift */,
 				21BDC0D62F722DAD00B05C68 /* WallpaperManager.swift */,
 				21BDC0D72F722DAD00B05C68 /* WallpaperViewModel.swift */,
+				21BDC0E42F72331300B05C68 /* LoginItemManager.swift */,
+				21BDC0E52F72331300B05C68 /* UnsplashWallpaper.entitlements */,
 				21BDC08C2F722C4600B05C68 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				21BDC0DC2F722DAD00B05C68 /* ImageDetailView.swift in Sources */,
 				21BDC0DD2F722DAD00B05C68 /* SettingsView.swift in Sources */,
 				21BDC0DE2F722DAD00B05C68 /* MenuBarView.swift in Sources */,
+				21BDC0E62F72331300B05C68 /* LoginItemManager.swift in Sources */,
 				21BDC0DF2F722DAD00B05C68 /* WallpaperManager.swift in Sources */,
 				21BDC0E02F722DAD00B05C68 /* WallpaperViewModel.swift in Sources */,
 				21BDC0E12F722DAD00B05C68 /* ContentView.swift in Sources */,
@@ -293,6 +299,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = UnsplashWallpaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
@@ -307,7 +314,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -348,6 +355,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = UnsplashWallpaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
@@ -362,7 +370,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

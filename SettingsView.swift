@@ -4,19 +4,20 @@
 //
 
 import SwiftUI
+import ServiceManagement
 
 struct SettingsView: View {
     @AppStorage("unsplashAccessKey") private var accessKey = ""
-    @AppStorage("autoStart") private var autoStart = false
     @AppStorage("downloadLocation") private var downloadLocation = ""
     @AppStorage("imageQuality") private var imageQuality = ImageQuality.regular
     @AppStorage("changeInterval") private var changeInterval = ChangeInterval.hourly
+    @StateObject private var loginItemManager = LoginItemManager.shared
     
     var body: some View {
         TabView {
             GeneralSettingsView(
                 accessKey: $accessKey,
-                autoStart: $autoStart,
+                loginItemManager: loginItemManager,
                 downloadLocation: $downloadLocation
             )
             .tabItem {
@@ -43,8 +44,9 @@ struct SettingsView: View {
 
 struct GeneralSettingsView: View {
     @Binding var accessKey: String
-    @Binding var autoStart: Bool
+    @ObservedObject var loginItemManager: LoginItemManager
     @Binding var downloadLocation: String
+    @State private var showingPermissionAlert = false
     
     var body: some View {
         Form {
@@ -60,7 +62,12 @@ struct GeneralSettingsView: View {
                 }
                 .padding(.bottom, 8)
                 
-                Toggle("Start at login", isOn: $autoStart)
+                Toggle("Start at login", isOn: $loginItemManager.isAutoStartEnabled)
+                    .onChange(of: loginItemManager.isAutoStartEnabled) { newValue in
+                        if newValue {
+                            requestLoginItemPermission()
+                        }
+                    }
                 
                 HStack {
                     Text("Download location:")
@@ -74,6 +81,36 @@ struct GeneralSettingsView: View {
             }
         }
         .padding()
+        .alert("Permission Required", isPresented: $showingPermissionAlert) {
+            Button("Open System Settings") {
+                openSystemSettings()
+            }
+            Button("Cancel", role: .cancel) {
+                loginItemManager.isAutoStartEnabled = false
+            }
+        } message: {
+            Text("To enable 'Start at login', please add this app to your Login Items in System Settings > General > Login Items.")
+        }
+    }
+    
+    private func requestLoginItemPermission() {
+        // On macOS 13+, SMAppService handles this automatically
+        // For older versions or if registration fails, show manual instructions
+        if #available(macOS 13.0, *) {
+            let bundleIdentifier = Bundle.main.bundleIdentifier ?? "com.yourcompany.UnsplashWallpaper"
+            let service = SMAppService.loginItem(identifier: "\(bundleIdentifier).helper")
+            if service.status == .notFound {
+                showingPermissionAlert = true
+            }
+        } else {
+            showingPermissionAlert = true
+        }
+    }
+    
+    private func openSystemSettings() {
+        if let url = URL(string: "x-apple.systempreferences:com.apple.LoginItems-Settings.extension") {
+            NSWorkspace.shared.open(url)
+        }
     }
     
     private func chooseDownloadLocation() {

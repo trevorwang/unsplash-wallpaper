@@ -31,6 +31,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupMenuBar()
+        
+        // Check and sync login item status on launch
+        let loginItemManager = LoginItemManager.shared
+        if loginItemManager.isAutoStartEnabled {
+            loginItemManager.updateLoginItemStatus()
+        }
     }
     
     func setupMenuBar() {
